@@ -33,12 +33,12 @@ const Connections = () => {
     <div className="text-center my-10">
       <h1 className="text-bold text-white text-3xl">Connections</h1>
       {connectionData.map((connection, count) => {
-        const { firstName, lastName, photoUrl, age, gender, about } =
+        const { _id, firstName, lastName, photoUrl, age, gender, about } =
           connection;
         return (
           <div
             className="bg-primary-content flex m-4 p-4 rounded-lg w-1/2 mx-auto"
-            key={count}
+            key={_id}
           >
             <div className="">
               <img
