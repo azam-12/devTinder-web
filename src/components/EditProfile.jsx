@@ -11,8 +11,8 @@ const EditProfile = ({user}) => {
 
   const [firstName, setFirstName] = useState(user.firstName);
   const [lastName, setLastName] = useState(user.lastName);
-  const [age, setAge] = useState(user.age);
-  const [gender, setGender] = useState(user.gender);
+  const [age, setAge] = useState(user.age || "");
+  const [gender, setGender] = useState(user.gender || "");
   const [photoUrl, setPhotoUrl] = useState(user.photoUrl);
   const [about, setAbout] = useState(user.about);
   const [error, setError] = useState("");
@@ -24,13 +24,6 @@ const EditProfile = ({user}) => {
     setGender(e.target.value);
   }
 
-
-  console.log(firstName,
-    lastName,
-    age,
-    gender,
-    photoUrl,
-    about);
 
   const handleSaveProfile = async() => {
     // Clear Errors
@@ -122,6 +115,18 @@ const EditProfile = ({user}) => {
                     id="female"
                     value="female"
                     checked={gender === "female"}
+                    onChange={handleRadioChange}
+                    className="radio"
+                  />
+                </div>
+                <div className="flex gap-3">
+                  <span className="label-text">Others</span>
+                  <input
+                    type="radio"
+                    name="gender"
+                    id="others"
+                    value="others"
+                    checked={gender === "others"}
                     onChange={handleRadioChange}
                     className="radio"
                   />

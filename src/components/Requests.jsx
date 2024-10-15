@@ -23,7 +23,6 @@ const Requests = () => {
   }
 
   const getConnectionRequests = async () => {
-    if (requests) return;
     try {
       const res = await axios.get(BASE_URL + "/user/request/received", {
         withCredentials: true,
@@ -40,7 +39,7 @@ const Requests = () => {
 
   if (!requests) return;
 
-  if (requests?.length === 0)
+  if (requests.length === 0)
     return <h2 className="flex justify-center my-10">No Connection Requests Found!</h2>;
 
   return (
@@ -48,7 +47,7 @@ const Requests = () => {
       <h1 className="text-bold text-white text-3xl">
         Received Connections Requests
       </h1>
-      {requests?.map((request, count) => {
+      {requests?.map((request) => {
         const { _id, firstName, lastName, photoUrl, age, gender, about } =
           request.fromUserId;
         return (

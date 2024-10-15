@@ -3,16 +3,22 @@ import { Link } from "react-router-dom";
 import { BASE_URL } from "../utils/constants";
 import axios from "axios";
 import { removeUser } from "../utils/userSlice";
+import { removeConnections } from "../utils/connectionSlice";
 
 
 const Navbar = () => {
   const user = useSelector((store) => store.user);
+  const ConnectionData = useSelector((store) => store.connections);
   const dispatch = useDispatch();
 
   const handleLogout = async() => {
     try {
       await axios.post(BASE_URL + "/logout", {}, { withCredentials: true });
       dispatch(removeUser());
+      if(ConnectionData.length !== 0){
+        dispatch(removeConnections);
+      }
+      
     } catch (err) {
       console.log(err);
     }

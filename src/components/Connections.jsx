@@ -9,12 +9,10 @@ const Connections = () => {
   const dispatch = useDispatch();
   const connectionData = useSelector((store) => store.connections);
   const getConnections = async () => {
-    if (connectionData) return;
     try {
       const res = await axios.get(BASE_URL + "/user/connections", {
         withCredentials: true,
       });
-      console.log("res.data.data: ", res?.data?.data);
       dispatch(addConnections(res?.data?.data));
     } catch (err) {
       console.log(err);
@@ -27,12 +25,12 @@ const Connections = () => {
 
   if (!connectionData) return;
 
-  if (connectionData.length === 0) return <h1>No Connections found!</h1>;
+  if (connectionData.length === 0) return <h1 className="flex justify-center my-10">No Connections found!</h1>;
 
   return (
     <div className="text-center my-10">
       <h1 className="text-bold text-white text-3xl">Connections</h1>
-      {connectionData.map((connection, count) => {
+      {connectionData.map((connection) => {
         const { _id, firstName, lastName, photoUrl, age, gender, about } =
           connection;
         return (
